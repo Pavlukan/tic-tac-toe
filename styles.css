@@ -13,6 +13,8 @@
 
 body {
     background-color: var(--spaceCadetColor);
+
+    font-family: 'Balsamiq Sans', cursive;
 }
 
 #title {
@@ -26,6 +28,10 @@ body {
 
 footer {
     color: var(--isabellineColor);
+
+    text-align: center;
+
+    font-size: 1.2rem;
 }
 
 footer a {
@@ -35,7 +41,6 @@ footer a {
 
     text-decoration: none;
     
-
     transition: all 0.3s linear;
 }
 
