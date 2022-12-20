@@ -1,6 +1,7 @@
 :root {
     --spaceCadetColor: #2C2A4A;
     --isabellineColor: #F2E9E4;
+    --bittersweetColor: #FF6B6B;
 }
 
 *, ::before, ::after {
@@ -28,5 +29,16 @@ footer {
 }
 
 footer a {
+    font-weight: 700;
+
     color: var(--isabellineColor);
+
+    text-decoration: none;
+    
+
+    transition: all 0.3s linear;
+}
+
+footer a:hover {
+    color: var(--bittersweetColor);
 }
