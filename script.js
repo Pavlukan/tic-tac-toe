@@ -29,3 +29,10 @@ const Gameboard = (() => {
         resetBoard
     }
 })();
+
+const playerFactory = (name, mark) => {
+    return {
+        name,
+        mark
+    }
+}
