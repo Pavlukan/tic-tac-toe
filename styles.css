@@ -18,6 +18,9 @@ body {
     background-color: var(--spaceCadetColor);
 
     font-family: 'Balsamiq Sans', cursive;
+
+    display: flex;
+    flex-direction: column;
 }
 
 #title {
@@ -35,6 +38,10 @@ footer {
     text-align: center;
 
     font-size: 1.2rem;
+    margin-top: auto;
+
+    padding: 24px;
+    height: 72px;
 }
 
 footer a {
