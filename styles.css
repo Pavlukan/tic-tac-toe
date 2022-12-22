@@ -65,6 +65,12 @@ main {
 
     border: 6px solid black;
     border-radius: 6px;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.gameboard-cell:hover {
+    transform: scale(1.1, 1.1);
 }
 
 /* FOOTER STYLING */
