@@ -94,3 +94,27 @@ footer a {
 footer a:hover {
     color: var(--bittersweetColor);
 }
+
+/* MEDIA QUERIES */
+
+@media all and (max-width: 500px) {
+    #title {
+        font-size: 4rem;
+    }
+
+    #gameboard {
+        height: 300px;
+        width: 300px;
+        gap: 8px;
+    }
+
+    .gameboard-cell {
+        border: 5px solid black;
+    }
+
+    footer {
+        font-size: 1rem;
+    }
+
+    
+}
