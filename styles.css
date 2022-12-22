@@ -61,7 +61,16 @@ main {
 }
 
 .gameboard-cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: var(--darkPurpleColor);
+
+    color: var(--isabellineColor);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7rem;
 
     border: 6px solid black;
     border-radius: 6px;
