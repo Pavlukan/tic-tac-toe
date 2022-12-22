@@ -32,6 +32,29 @@ body {
     color: var(--isabellineColor);
 }
 
+main {
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 12px;
+
+    height: 400px;
+    width: 400px;
+}
+
+.gameboard-cell {
+    background-color: var(--isabellineColor);
+}
+
 footer {
     color: var(--isabellineColor);
 
