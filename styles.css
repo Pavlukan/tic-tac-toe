@@ -80,6 +80,8 @@ main {
 
 .gameboard-cell:hover {
     transform: scale(1.1, 1.1);
+    
+    color: var(--bittersweetColor);
 }
 
 /* FOOTER STYLING */
