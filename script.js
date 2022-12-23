@@ -8,31 +8,52 @@
 // If the player won, increase the player's score. If the computer won, increase computer's score.
 // Propose another round to the player.
 
-const Gameboard = (() => {
-    const board = new Array(9).fill("X");
-
-    const getBoard = () => {
-        return board.slice();
+const Game = (() => {
+    const Gameboard = (() => {
+        const board = new Array(9).fill("X");
+    
+        const getBoard = () => {
+            return board.slice();
+        }
+    
+        const setMarker = (marker, index) => {
+            return board.splice(index, 1, marker);
+        }
+    
+        const resetBoard = () => {
+            return board.fill("");
+        }
+    
+        return { 
+            getBoard,
+            setMarker,
+            resetBoard
+        }
+    })();
+    
+    const playerFactory = (name, mark) => {
+        return {
+            name,
+            mark
+        }
     }
 
-    const setMarker = (marker, index) => {
-        return board.splice(index, 1, marker);
-    }
+    const displayController = (() => {
+        const cellNodes = document.querySelectorAll(".gameboard-cell");
+        const updateBoard = () => {
+            for (let i = 0; i < cellNodes.length; i++) {
+                cellNodes[i].textContent = Gameboard.getBoard()[i];
+            }    
+        }
+        
+        return {
+            updateBoard
+        }
+    })();
 
-    const resetBoard = () => {
-        return board.fill("");
-    }
-
-    return { 
-        getBoard,
-        setMarker,
-        resetBoard
+    return {
+        Gameboard,
+        playerFactory,
+        displayController
     }
 })();
-
-const playerFactory = (name, mark) => {
-    return {
-        name,
-        mark
-    }
-}
