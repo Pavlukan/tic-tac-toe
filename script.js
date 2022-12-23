@@ -17,11 +17,13 @@ const Game = (() => {
         }
     
         const setMarker = (marker, index) => {
-            return board.splice(index, 1, marker);
+            board.splice(index, 1, marker);
+            displayController.updateBoard();
         }
     
         const resetBoard = () => {
-            return board.fill("");
+            board.fill("");
+            displayController.updateBoard();
         }
     
         return { 
@@ -45,6 +47,7 @@ const Game = (() => {
                 cellNodes[i].textContent = Gameboard.getBoard()[i];
             }    
         }
+        updateBoard();
         
         return {
             updateBoard
