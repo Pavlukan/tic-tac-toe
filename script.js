@@ -12,7 +12,7 @@ const Gameboard = (() => {
     const board = new Array(9).fill("X");
     
     const getBoard = () => {
-        return board.slice();
+        return [...board];
     }
     
     const setMarker = (marker, index) => {
