@@ -8,55 +8,50 @@
 // If the player won, increase the player's score. If the computer won, increase computer's score.
 // Propose another round to the player.
 
-const Game = (() => {
-    const Gameboard = (() => {
-        const board = new Array(9).fill("X");
+const Gameboard = (() => {
+    const board = new Array(9).fill("X");
     
-        const getBoard = () => {
-            return board.slice();
-        }
-    
-        const setMarker = (marker, index) => {
-            board.splice(index, 1, marker);
-            displayController.updateBoard();
-        }
-    
-        const resetBoard = () => {
-            board.fill("");
-            displayController.updateBoard();
-        }
-    
-        return { 
-            getBoard,
-            setMarker,
-            resetBoard
-        }
-    })();
-    
-    const playerFactory = (name, mark) => {
-        return {
-            name,
-            mark
-        }
+    const getBoard = () => {
+        return board.slice();
     }
-
-    const displayController = (() => {
-        const cellNodes = document.querySelectorAll(".gameboard-cell");
-        const updateBoard = () => {
-            for (let i = 0; i < cellNodes.length; i++) {
-                cellNodes[i].textContent = Gameboard.getBoard()[i];
-            }    
-        }
-        updateBoard();
-        
-        return {
-            updateBoard
-        }
-    })();
-
-    return {
-        Gameboard,
-        playerFactory,
-        displayController
+    
+    const setMarker = (marker, index) => {
+        board.splice(index, 1, marker);
+        displayController.updateBoard(); // updates the board when setting a mark
+    }
+    
+    const resetBoard = () => {
+        board.fill("");
+        displayController.updateBoard(); // updates the board on resetting
+    }
+    
+    return { 
+        getBoard,
+        setMarker,
+        resetBoard
     }
 })();
+    
+const playerFactory = (name, mark) => {
+    return {
+        name,
+        mark
+    }
+}
+
+const displayController = (() => {
+    const cellNodes = document.querySelectorAll(".gameboard-cell");
+
+    const updateBoard = () => {
+        for (let i = 0; i < cellNodes.length; i++) {
+            cellNodes[i].textContent = Gameboard.getBoard()[i];
+        }    
+    }
+        
+    updateBoard(); // updates the board on loading
+        
+    return {
+        updateBoard
+    }
+})();
+
