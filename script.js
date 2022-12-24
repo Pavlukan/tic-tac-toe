@@ -8,6 +8,7 @@
 // If the player won, increase the player's score. If the computer won, increase computer's score.
 // Propose another round to the player.
 
+// Module responsible for the mechanics of the board
 const Gameboard = (() => {
     const board = new Array(9).fill("");
     
@@ -32,6 +33,7 @@ const Gameboard = (() => {
     }
 })();
     
+// Factory function responsible for creation of players
 const playerFactory = (name, mark) => {
     return {
         name,
@@ -39,6 +41,7 @@ const playerFactory = (name, mark) => {
     }
 }
 
+// Module responsible for displaying information
 const displayController = (() => {
     const cellNodes = document.querySelectorAll(".gameboard-cell");
 
