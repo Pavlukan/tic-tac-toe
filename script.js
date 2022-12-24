@@ -47,11 +47,20 @@ const displayController = (() => {
             cellNodes[i].textContent = Gameboard.getBoard()[i];
         }    
     }
-        
+
+    const addEventListenersToGameboardCells = () => {
+        cellNodes.forEach(node => {
+            node.addEventListener("click", () => {
+                Gameboard.setMarker("O", +node.getAttribute("data-index"))
+            })
+        });
+    }
+     
+    addEventListenersToGameboardCells(); // adds event listeners to gameboard cells on loading 
     updateBoard(); // updates the board on loading
         
     return {
-        updateBoard
+        updateBoard,
     }
 })();
 
