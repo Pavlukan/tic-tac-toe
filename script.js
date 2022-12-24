@@ -9,7 +9,7 @@
 // Propose another round to the player.
 
 const Gameboard = (() => {
-    const board = new Array(9).fill("X");
+    const board = new Array(9).fill("");
     
     const getBoard = () => {
         return [...board];
@@ -51,8 +51,8 @@ const displayController = (() => {
     const addEventListenersToGameboardCells = () => {
         cellNodes.forEach(node => {
             node.addEventListener("click", () => {
-                Gameboard.setMarker("O", +node.getAttribute("data-index"))
-            })
+                Gameboard.setMarker("O", +node.getAttribute("data-index"));
+            }, {once: true});
         });
     }
      
