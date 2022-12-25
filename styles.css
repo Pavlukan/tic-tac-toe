@@ -48,6 +48,20 @@ main {
     align-items: center;
 }
 
+/* WINNING MESSAGE STYLING */
+#winning-message {
+    font-size: 1.8rem;
+    color: var(--isabellineColor);
+
+    margin-bottom: 36px;
+
+    transition: all 0.3s linear;
+}
+
+#winning-message:hover {
+    color: var(--bittersweetColor);
+}
+
 /* GAMEBOARD STYLING */
 
 #gameboard {
@@ -117,6 +131,10 @@ footer a:hover {
 @media all and (max-width: 500px) {
     #title {
         font-size: 4rem;
+    }
+
+    #winning-message {
+        font-size: 1.5rem;
     }
 
     #gameboard {
