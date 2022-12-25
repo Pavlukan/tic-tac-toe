@@ -48,14 +48,23 @@ main {
     align-items: center;
 }
 
-/* WINNING MESSAGE STYLING */
-#winning-message {
+/* WINNING MESSAGE && CURRENT TURN MESSAGE STYLING */
+#winning-message, #current-turn-message {
     font-size: 1.8rem;
+
     color: var(--isabellineColor);
 
     margin-bottom: 36px;
 
     transition: all 0.3s linear;
+}
+
+#winning-message {
+    text-decoration: underline;
+}
+
+#current-turn-message {
+    margin-bottom: 12px;
 }
 
 #winning-message:hover {
@@ -133,7 +142,7 @@ footer a:hover {
         font-size: 4rem;
     }
 
-    #winning-message {
+    #winning-message, #current-turn-message {
         font-size: 1.5rem;
     }
 
