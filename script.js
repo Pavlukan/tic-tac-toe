@@ -34,14 +34,14 @@ const Gameboard = (() => {
             board.splice(index, 1, CIRCLE);
             displayController.updateBoard(); // updates the board when setting a mark
             if (checkWin(CIRCLE)) {
-                return console.log("Player 1 has won!");
+                return displayController.updateWinningMessage(CIRCLE);
             }
             swapTurns(); // swaps turns
         } else {
             board.splice(index, 1, X);
             displayController.updateBoard(); // updates the board when setting a mark
             if (checkWin(X)) {
-                return console.log("Player 2 has won!");
+                return displayController.updateWinningMessage(X);
             }
             swapTurns(); // swaps turns
         }
@@ -82,6 +82,7 @@ const playerFactory = (name, mark) => {
 // Module responsible for displaying information
 const displayController = (() => {
     const cellNodes = document.querySelectorAll(".gameboard-cell");
+    const winningMessage = document.querySelector("#winning-message");
 
     const updateBoard = () => {
         for (let i = 0; i < cellNodes.length; i++) {
@@ -96,11 +97,20 @@ const displayController = (() => {
             }, {once: true});
         });
     }
+
+    const updateWinningMessage = (mark) => {
+        if (mark === "O") {
+            return winningMessage.textContent = "Player 1 has won!";
+        } else {
+            return winningMessage.textContent = "Player 2 has won!";
+        }
+    }
      
     addEventListenersToGameboardCells(); // adds event listeners to gameboard cells on loading 
     updateBoard(); // updates the board on loading
         
     return {
         updateBoard,
+        updateWinningMessage
     }
 })();
