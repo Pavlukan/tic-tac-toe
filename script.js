@@ -10,6 +10,18 @@
 
 // Module responsible for the mechanics of the board
 const Gameboard = (() => {
+    const CIRCLE = "O";
+    const X = "X";
+    const WINNING_COMBINATIONS = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
     const board = new Array(9).fill("");
     let circleTurn;
     
@@ -19,13 +31,19 @@ const Gameboard = (() => {
     
     const setMarker = (index) => {
         if (circleTurn) {
-            board.splice(index, 1, "O");
-            displayController.updateBoard(); 
-            swapTurns();
-        } else {
-            board.splice(index, 1, "X");
+            board.splice(index, 1, CIRCLE);
             displayController.updateBoard(); // updates the board when setting a mark
-            swapTurns();
+            if (checkWin(CIRCLE)) {
+                return console.log("Player 1 has won!");
+            }
+            swapTurns(); // swaps turns
+        } else {
+            board.splice(index, 1, X);
+            displayController.updateBoard(); // updates the board when setting a mark
+            if (checkWin(X)) {
+                return console.log("Player 2 has won!");
+            }
+            swapTurns(); // swaps turns
         }
     }
     
@@ -38,11 +56,18 @@ const Gameboard = (() => {
         circleTurn = !circleTurn;
     }
     
+    const checkWin = (currentMark) => {
+        return WINNING_COMBINATIONS.some(combination => {
+            return combination.every(index => {
+                return getBoard()[index] === currentMark;
+            });
+        });
+    }
+
     return { 
         getBoard,
         setMarker,
         resetBoard,
-        swapTurns
     }
 })();
     
