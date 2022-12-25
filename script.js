@@ -11,25 +11,38 @@
 // Module responsible for the mechanics of the board
 const Gameboard = (() => {
     const board = new Array(9).fill("");
+    let circleTurn;
     
     const getBoard = () => {
         return [...board];
     }
     
-    const setMarker = (marker, index) => {
-        board.splice(index, 1, marker);
-        displayController.updateBoard(); // updates the board when setting a mark
+    const setMarker = (index) => {
+        if (circleTurn) {
+            board.splice(index, 1, "O");
+            displayController.updateBoard(); 
+            swapTurns();
+        } else {
+            board.splice(index, 1, "X");
+            displayController.updateBoard(); // updates the board when setting a mark
+            swapTurns();
+        }
     }
     
     const resetBoard = () => {
         board.fill("");
         displayController.updateBoard(); // updates the board on resetting
     }
+
+    const swapTurns = () => {
+        circleTurn = !circleTurn;
+    }
     
     return { 
         getBoard,
         setMarker,
-        resetBoard
+        resetBoard,
+        swapTurns
     }
 })();
     
@@ -54,7 +67,7 @@ const displayController = (() => {
     const addEventListenersToGameboardCells = () => {
         cellNodes.forEach(node => {
             node.addEventListener("click", () => {
-                Gameboard.setMarker("O", +node.getAttribute("data-index"));
+                Gameboard.setMarker(+node.getAttribute("data-index"));
             }, {once: true});
         });
     }
@@ -66,4 +79,3 @@ const displayController = (() => {
         updateBoard,
     }
 })();
-
