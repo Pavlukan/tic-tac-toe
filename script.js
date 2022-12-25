@@ -35,15 +35,21 @@ const Gameboard = (() => {
             displayController.updateBoard(); // updates the board when setting a mark
             if (checkWin(CIRCLE)) {
                 return displayController.updateWinningMessage(CIRCLE);
+            } else if (isDraw()) {
+                return displayController.updateWinningMessage("draw");
+            } else {
+                swapTurns(); 
             }
-            swapTurns(); // swaps turns
         } else {
             board.splice(index, 1, X);
             displayController.updateBoard(); // updates the board when setting a mark
             if (checkWin(X)) {
                 return displayController.updateWinningMessage(X);
+            } else if (isDraw()) {
+                return displayController.updateWinningMessage("draw");
+            } else {
+                swapTurns(); 
             }
-            swapTurns(); // swaps turns
         }
     }
     
@@ -61,6 +67,12 @@ const Gameboard = (() => {
             return combination.every(index => {
                 return getBoard()[index] === currentMark;
             });
+        });
+    }
+
+    const isDraw = () => {
+        return getBoard().every(item => {
+            return item === CIRCLE || item === X;
         });
     }
 
@@ -101,8 +113,10 @@ const displayController = (() => {
     const updateWinningMessage = (mark) => {
         if (mark === "O") {
             return winningMessage.textContent = "Player 1 has won!";
-        } else {
+        } else if (mark === "X") {
             return winningMessage.textContent = "Player 2 has won!";
+        } else {
+            return winningMessage.textContent = "It's a draw :(";
         }
     }
      
