@@ -39,6 +39,7 @@ const Gameboard = (() => {
                 return displayController.updateWinningMessage("draw");
             } else {
                 swapTurns(); 
+                displayController.updateTurnMessage(circleTurn);
             }
         } else {
             board.splice(index, 1, X);
@@ -49,6 +50,7 @@ const Gameboard = (() => {
                 return displayController.updateWinningMessage("draw");
             } else {
                 swapTurns(); 
+                displayController.updateTurnMessage(circleTurn);
             }
         }
     }
@@ -95,6 +97,7 @@ const playerFactory = (name, mark) => {
 const displayController = (() => {
     const cellNodes = document.querySelectorAll(".gameboard-cell");
     const winningMessage = document.querySelector("#winning-message");
+    const currentTurnMessage = document.querySelector("#current-turn-message");
 
     const updateBoard = () => {
         for (let i = 0; i < cellNodes.length; i++) {
@@ -119,12 +122,21 @@ const displayController = (() => {
             return winningMessage.textContent = "It's a draw :(";
         }
     }
+
+    const updateTurnMessage = (turn) => {
+        if (turn == false) {
+            return currentTurnMessage.textContent = "X's turn";
+        } else {
+            return currentTurnMessage.textContent = "O's turn";
+        }
+    }
      
     addEventListenersToGameboardCells(); // adds event listeners to gameboard cells on loading 
     updateBoard(); // updates the board on loading
         
     return {
         updateBoard,
-        updateWinningMessage
+        updateWinningMessage,
+        updateTurnMessage
     }
 })();
