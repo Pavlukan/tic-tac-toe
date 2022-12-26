@@ -97,7 +97,8 @@ const playerFactory = (name, mark) => {
 const displayController = (() => {
     const cellNodes = document.querySelectorAll(".gameboard-cell");
     const winningMessage = document.querySelector("#winning-message");
-    const currentTurnMessage = document.querySelector("#current-turn-message");
+    const winningMessageText = document.querySelector("#winning-message-text");
+    const currentTurnMessageText = document.querySelector("#current-turn-message");
 
     const updateBoard = () => {
         for (let i = 0; i < cellNodes.length; i++) {
@@ -115,19 +116,22 @@ const displayController = (() => {
 
     const updateWinningMessage = (mark) => {
         if (mark === "O") {
-            return winningMessage.textContent = "Player 1 has won!";
+            winningMessage.classList.add("show");
+            return winningMessageText.textContent = "Player 1 has won!";
         } else if (mark === "X") {
-            return winningMessage.textContent = "Player 2 has won!";
+            winningMessage.classList.add("show");
+            return winningMessageText.textContent = "Player 2 has won!";
         } else {
-            return winningMessage.textContent = "It's a draw :(";
+            winningMessage.classList.add("show");
+            return winningMessageText.textContent = "It's a draw :(";
         }
     }
 
     const updateTurnMessage = (turn) => {
         if (turn == false) {
-            return currentTurnMessage.textContent = "X's turn";
+            return currentTurnMessageText.textContent = "X's turn";
         } else {
-            return currentTurnMessage.textContent = "O's turn";
+            return currentTurnMessageText.textContent = "O's turn";
         }
     }
      
