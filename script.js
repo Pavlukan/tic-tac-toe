@@ -155,7 +155,8 @@ const displayController = (() => {
     addEventListenersToGameboardCells(); // adds event listeners to gameboard cells on loading 
     addEventListenerToNewGameButton(); // adds the event listener to the new-game-button on loading
     updateBoard(); // updates the board on loading
-        
+    updateTurnMessage(false); // shows whose turn it is on loading
+
     return {
         updateBoard,
         updateWinningMessage,
