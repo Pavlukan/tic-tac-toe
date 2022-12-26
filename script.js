@@ -97,6 +97,7 @@ const playerFactory = (name, mark) => {
 const displayController = (() => {
     const cellNodes = document.querySelectorAll(".gameboard-cell");
     const winningMessage = document.querySelector("#winning-message");
+    const newGameBtn = document.querySelector("#new-game-button");
     const winningMessageText = document.querySelector("#winning-message-text");
     const currentTurnMessageText = document.querySelector("#current-turn-message");
 
@@ -104,6 +105,14 @@ const displayController = (() => {
         for (let i = 0; i < cellNodes.length; i++) {
             cellNodes[i].textContent = Gameboard.getBoard()[i];
         }    
+    }
+
+    const addClass = (element, className) => {
+        element.classList.add(className);
+    }
+
+    const removeClass = (element, className) => {
+        element.classList.remove(className);
     }
 
     const addEventListenersToGameboardCells = () => {
@@ -114,15 +123,23 @@ const displayController = (() => {
         });
     }
 
+    const addEventListenerToNewGameButton = () => {
+        newGameBtn.addEventListener("click", () => {
+            Gameboard.resetBoard();
+            removeClass(winningMessage, "show");
+            addEventListenersToGameboardCells();
+        });
+    }
+
     const updateWinningMessage = (mark) => {
         if (mark === "O") {
-            winningMessage.classList.add("show");
+            addClass(winningMessage, "show");
             return winningMessageText.textContent = "Player 1 has won!";
         } else if (mark === "X") {
-            winningMessage.classList.add("show");
+            addClass(winningMessage, "show");
             return winningMessageText.textContent = "Player 2 has won!";
         } else {
-            winningMessage.classList.add("show");
+            addClass(winningMessage, "show");
             return winningMessageText.textContent = "It's a draw :(";
         }
     }
@@ -136,6 +153,7 @@ const displayController = (() => {
     }
      
     addEventListenersToGameboardCells(); // adds event listeners to gameboard cells on loading 
+    addEventListenerToNewGameButton(); // adds the event listener to the new-game-button on loading
     updateBoard(); // updates the board on loading
         
     return {
