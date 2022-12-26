@@ -48,29 +48,57 @@ main {
     align-items: center;
 }
 
-/* WINNING MESSAGE && CURRENT TURN MESSAGE STYLING */
-#winning-message, #current-turn-message {
+/* WINNING MESSAGE STYLING */
+
+#winning-message {
+    display: none;
+}
+
+#winning-message.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #00000096;
+    color: var(--isabellineColor);
+
+    font-size: 5rem;
+}
+
+#new-game-button {
+    cursor: pointer;
+    
+    font-family: 'Balsamiq Sans', cursive;
+    font-size: 2.5rem;
+    
+    padding: 8px 24px;
+
+    transition: all 0.3s linear;
+}
+
+#new-game-button:hover {
+    transform:translateY(12px)
+}
+
+/* CURRENT TURN MESSAGE STYLING */
+#current-turn-message {
     font-size: 1.8rem;
 
     height: 35px;
 
     color: var(--isabellineColor);
 
-    margin-bottom: 32px;
+    margin-bottom: 12px;
 
     transition: all 0.3s linear;
-}
-
-#winning-message {
-    text-decoration: underline;
-}
-
-#current-turn-message {
-    margin-bottom: 12px;
-}
-
-#winning-message:hover {
-    color: var(--bittersweetColor);
 }
 
 /* GAMEBOARD STYLING */
@@ -144,7 +172,15 @@ footer a:hover {
         font-size: 4rem;
     }
 
-    #winning-message, #current-turn-message {
+    #winning-message {
+        font-size: 2.5rem;
+    }
+
+    #new-game-button {
+        font-size: 1.5rem;
+    }
+
+    #current-turn-message {
         font-size: 1.5rem;
     }
 
