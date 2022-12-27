@@ -20,10 +20,16 @@
             <p id="winning-message-text"></p>
             <button type="button" id="new-game-button">New Game</button>
         </div>
-        <label for="nameFirst">First player name: </label>
-        <input type="text" id="nameFirst" name="nameFirst">
-        <label for="nameSecond">Second player name: </label>
-        <input type="text" id="nameSecond" name="nameSecond">
+        <div class="playerNames">
+            <div class="firstName">
+                <label for="nameFirst">First player name: </label>
+                <input type="text" id="nameFirst" name="nameFirst">
+            </div>
+            <div class="secondName">
+                <label for="nameSecond">Second player name: </label>
+                <input type="text" id="nameSecond" name="nameSecond">
+            </div>
+        </div>
         <div id="current-turn-message"></div>
         <div id="gameboard">
             <div class="gameboard-cell" data-index="0"></div>
