@@ -26,6 +26,12 @@ body {
     flex-direction: column;
 }
 
+button {
+    cursor: pointer;
+
+    font-family: 'Balsamiq Sans', cursive;
+}
+
 /* HEADER STYLING */
 
 #title {
@@ -74,9 +80,6 @@ main {
 }
 
 #new-game-button {
-    cursor: pointer;
-    
-    font-family: 'Balsamiq Sans', cursive;
     font-size: 2.5rem;
     
     padding: 8px 24px;
@@ -94,7 +97,7 @@ main {
 
     font-size: 1.3rem;
 
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     
     display: flex;
     flex-direction: column;
@@ -135,6 +138,28 @@ input[type="text"] {
 
 input[type="text"]:focus {
     transform:scale(1.03);
+}
+
+/* START GAME BUTTON STYLING */
+#startGameButton {
+    margin-bottom: 12px;
+    
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    padding: 4px 24px;
+
+    border: 2px solid black;
+    border-radius: 4px;
+
+    background-color: var(--darkPurpleColor);
+    color: var(--isabellineColor);
+
+    transition: all 0.05s linear;
+}
+
+#startGameButton:active {
+    transform: scale(1.1);
 }
 
 /* CURRENT TURN MESSAGE STYLING */
