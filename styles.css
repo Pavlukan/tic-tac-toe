@@ -88,6 +88,55 @@ main {
     transform:translateY(12px)
 }
 
+/* FORM STYLING */
+.playerNames {
+    color: var(--isabellineColor);
+
+    font-size: 1.3rem;
+
+    margin-bottom: 24px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.firstName, .secondName {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+label:hover {
+    color: var(--bittersweetColor);
+}
+
+input[type="text"] {
+    appearance: none;
+    outline: none;
+    border: 2px solid black;
+
+    background-color: var(--darkPurpleColor);
+    color: var(--isabellineColor);
+
+    font-size: 1.1rem;
+    
+    transition: all 0.2s linear;
+
+    padding: 3px;
+}
+
+input[type="text"]:focus {
+    transform:scale(1.03);
+}
+
 /* CURRENT TURN MESSAGE STYLING */
 #current-turn-message {
     font-size: 1.8rem;
@@ -175,6 +224,10 @@ footer a:hover {
 
     #winning-message-text {
         font-size: 2.8rem;
+    }
+
+    .playerNames {
+        font-size: 1.1rem;
     }
 
     #new-game-button {
