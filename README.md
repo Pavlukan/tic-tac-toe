@@ -27,4 +27,4 @@ Every module comprises certain variables, functions, and returns the ones, which
 Although it was difficult at times, although my code doesn't look as clean as I want it to look, I still feel proud, because it pleases my eye. Moreover, it looks far cleaner compared to non-OOP programming.
 
 ## Live preview
-Link: 
+Link: https://pavlukan.github.io/tic-tac-toe/
