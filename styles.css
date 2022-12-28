@@ -67,6 +67,8 @@ main {
     align-items: center;
     gap: 16px;
 
+    text-align: center; /* fixes the bug when text shifts to the left on small screens */
+
     position: fixed;
     left: 0;
     top: 0;
