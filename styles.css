@@ -155,11 +155,16 @@ input[type="text"]:focus {
     background-color: var(--darkPurpleColor);
     color: var(--isabellineColor);
 
-    transition: all 0.05s linear;
+    transition: transform 0.05s linear;
+    transition: color 0.2s linear;
 }
 
 #startGameButton:active {
     transform: scale(1.1);
+}
+
+#startGameButton:hover {
+    color: var(--bittersweetColor);
 }
 
 /* CURRENT TURN MESSAGE STYLING */
