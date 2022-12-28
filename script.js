@@ -1,17 +1,10 @@
-// PSEUDOCODE
-// In the game of Tic Tac Toe, a player picks a marker (O or X) and the game starts.
-// The player places the marker on the game board and the computer responds with its own move.
-// They continue to play until one side succeeds in placing three markers in a row horizontally, vertically, or diagonally (need to check that)
-// or until they face a tie.
-// In that case, the game ends.
-// Update the scoreboard.
-// If the player won, increase the player's score. If the computer won, increase computer's score.
-// Propose another round to the player.
-
 // Module responsible for the mechanics of the board
 const Gameboard = (() => {
     const CIRCLE = "O";
     const X = "X";
+    
+    const board = new Array(9).fill("");
+
     const WINNING_COMBINATIONS = [
         [0, 1, 2],
         [3, 4, 5],
@@ -22,8 +15,12 @@ const Gameboard = (() => {
         [0, 4, 8],
         [2, 4, 6]
     ];
-    const board = new Array(9).fill("");
+    const firstPlayerInput = document.querySelector("#nameFirst");
+    const secondPlayerInput = document.querySelector("#nameSecond");
+
     let circleTurn;
+    let player1;
+    let player2;
     
     const getBoard = () => {
         return [...board];
@@ -54,6 +51,25 @@ const Gameboard = (() => {
             }
         }
     }
+
+    const startNewGame = () => {
+        resetBoard();
+        displayController.addEventListenersToGameboardCells();
+        createPlayers();
+    }
+
+    const createPlayers = () => {
+        player1 = playerFactory(firstPlayerInput.value || "John Doe");
+        player2 = playerFactory(secondPlayerInput.value || "Jane Doe");
+    }
+
+    const getPlayer1 = () => {
+        return player1;
+    }
+
+    const getPlayer2 = () => {
+        return player2;
+    }
     
     const resetBoard = () => {
         board.fill("");
@@ -82,14 +98,16 @@ const Gameboard = (() => {
         getBoard,
         setMarker,
         resetBoard,
+        startNewGame,
+        getPlayer1,
+        getPlayer2
     }
 })();
     
 // Factory function responsible for creation of players
-const playerFactory = (name, mark) => {
+const playerFactory = (name) => {
     return {
-        name,
-        mark
+        name
     }
 }
 
@@ -97,6 +115,7 @@ const playerFactory = (name, mark) => {
 const displayController = (() => {
     const cellNodes = document.querySelectorAll(".gameboard-cell");
     const winningMessage = document.querySelector("#winning-message");
+    const startGameBtn = document.querySelector("#startGameButton");
     const newGameBtn = document.querySelector("#new-game-button");
     const winningMessageText = document.querySelector("#winning-message-text");
     const currentTurnMessageText = document.querySelector("#current-turn-message");
@@ -131,13 +150,19 @@ const displayController = (() => {
         });
     }
 
+    const addEventListenerToStartGameButton = () => {
+        startGameBtn.addEventListener("click", () => {
+            Gameboard.startNewGame();
+        });
+    }
+
     const updateWinningMessage = (mark) => {
-        if (mark === "O") {
+        if (mark === "X") {
             addClass(winningMessage, "show");
-            return winningMessageText.textContent = "Player 1 has won!";
-        } else if (mark === "X") {
+            return winningMessageText.textContent = `${Gameboard.getPlayer1().name} has won!`;
+        } else if (mark === "O") {
             addClass(winningMessage, "show");
-            return winningMessageText.textContent = "Player 2 has won!";
+            return winningMessageText.textContent = `${Gameboard.getPlayer2().name} has won!`
         } else {
             addClass(winningMessage, "show");
             return winningMessageText.textContent = "It's a draw :(";
@@ -146,20 +171,20 @@ const displayController = (() => {
 
     const updateTurnMessage = (turn) => {
         if (turn == false) {
-            return currentTurnMessageText.textContent = "X's turn";
+            return currentTurnMessageText.textContent = `${Gameboard.getPlayer1().name}'s turn`;
         } else {
-            return currentTurnMessageText.textContent = "O's turn";
+            return currentTurnMessageText.textContent = `${Gameboard.getPlayer2().name}'s turn`;
         }
     }
      
-    addEventListenersToGameboardCells(); // adds event listeners to gameboard cells on loading 
+    addEventListenerToStartGameButton();
     addEventListenerToNewGameButton(); // adds the event listener to the new-game-button on loading
     updateBoard(); // updates the board on loading
-    updateTurnMessage(false); // shows whose turn it is on loading
 
     return {
         updateBoard,
         updateWinningMessage,
-        updateTurnMessage
+        updateTurnMessage,
+        addEventListenersToGameboardCells
     }
 })();
