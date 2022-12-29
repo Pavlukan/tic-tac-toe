@@ -142,8 +142,15 @@ input[type="text"]:focus {
     transform:scale(1.03);
 }
 
-/* START GAME BUTTON STYLING */
-#startGameButton {
+/* BUTTON WRAPPER STYLING */
+.button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* START GAME AND START GAME WITH AI BUTTONS STYLING */
+#startGameButton, #startWithAI {
     margin-bottom: 12px;
     
     font-size: 1.5rem;
@@ -161,11 +168,11 @@ input[type="text"]:focus {
     transition: color 0.2s linear;
 }
 
-#startGameButton:active {
+#startGameButton:active, #startWithAI:active {
     transform: scale(1.1);
 }
 
-#startGameButton:hover {
+#startGameButton:hover, #startWithAI:hover {
     color: var(--bittersweetColor);
 }
 
@@ -255,7 +262,7 @@ footer a:hover {
     }
 
     #winning-message-text {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
 
     .playerNames {
