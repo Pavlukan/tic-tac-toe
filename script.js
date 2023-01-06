@@ -18,7 +18,7 @@ const Gameboard = (() => {
     const firstPlayerInput = document.querySelector("#nameFirst");
     const secondPlayerInput = document.querySelector("#nameSecond");
 
-    let circleTurn;
+    let circleTurn = false;
     let player1;
     let player2;
     
@@ -77,7 +77,7 @@ const Gameboard = (() => {
     }
 
     const swapTurns = () => {
-        circleTurn = !circleTurn;
+        return circleTurn = !circleTurn;
     }
     
     const checkWin = (currentMark) => {
@@ -136,15 +136,20 @@ const displayController = (() => {
 
     const addEventListenersToGameboardCells = () => {
         cellNodes.forEach(node => {
-            node.addEventListener("click", () => {
+          node.addEventListener("click", () => {
+              if (!node.getAttribute("listener") || node.getAttribute("listener") === "false") {
                 Gameboard.setMarker(+node.getAttribute("data-index"));
-            }, {once: true});
+                node.setAttribute("listener", "true");
+              }
+            }, { once: true }
+          );
         });
-    }
+      };
 
     const addEventListenerToNewGameButton = () => {
         newGameBtn.addEventListener("click", () => {
             Gameboard.resetBoard();
+            cellNodes.forEach((cell) => cell.setAttribute("listener", "false"));
             removeClass(winningMessage, "show");
             addEventListenersToGameboardCells();
         });
@@ -152,6 +157,7 @@ const displayController = (() => {
 
     const addEventListenerToStartGameButton = () => {
         startGameBtn.addEventListener("click", () => {
+            cellNodes.forEach((cell) => cell.setAttribute("listener", "false"));
             Gameboard.startNewGame();
         });
     }
